@@ -1,0 +1,28 @@
+.election {
+    display: flex;
+    justify-content: center;
+
+    .container {
+        width: 1400px;
+        padding: 20px 0px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+
+        h1 {
+            font-size: 50px;
+        }
+
+        p {
+            color: grey;
+            font-weight: 400;
+        }
+
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+    }
+}

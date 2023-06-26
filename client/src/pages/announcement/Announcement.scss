@@ -1,0 +1,29 @@
+.announcement {
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+
+    .singleannouncement {
+        display: flex;
+        flex: 6;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .Categories {
+        background-color: white;
+        display: flex;
+        flex: 3;
+        flex-direction: column;
+        margin: 50px 50px;
+        gap: 10px;
+        height: max-content;
+        padding: 20px;
+        border-radius: 5px;
+
+        .link {
+            color: inherit;
+            text-decoration: none;
+        }
+    }
+}
