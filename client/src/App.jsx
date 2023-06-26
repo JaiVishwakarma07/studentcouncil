@@ -14,20 +14,28 @@ import Dashboard from './pages/dashboard/Dashboard'
 import SingleAnnouncement from './components/singleannouncement/SingleAnnouncement';
 import ElectionProfile from './pages/electionprofile/ElectionProfile';
 import Home from './pages/Home/Home';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+import Login from './pages/login/Login';
 
 
 function App() {
 
   const currentUser = true;
+  const queryClient = new QueryClient()
 
   const Layout = () => {
     return (
-      <div className="theme-light">
-        <Navbar />
-        <div >
-          <Outlet />
+      <QueryClientProvider client={queryClient}>
+        <div>
+          <Navbar />
+          <div >
+            <Outlet />
+          </div>
         </div>
-      </div>
+      </QueryClientProvider>
     )
   }
 
@@ -76,10 +84,10 @@ function App() {
       ]
     },
 
-    // {
-    //   path: "/login",
-    //   element: <Login />
-    // },
+    {
+      path: "/login",
+      element: <Login />
+    },
     // {
     //   path: "/register",
     //   element: <Register />,
