@@ -15,6 +15,10 @@ const AnnouncementSchema = new Schema({
         type: String,
         required: true,
     },
+    category: {
+        type: String,
+        required: true,
+    }
 }, { timestamps: true })
 
-export default mongoose.model(("Announcement", AnnouncementSchema))
+export default mongoose.model("Announcement", AnnouncementSchema)

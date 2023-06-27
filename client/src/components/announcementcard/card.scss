@@ -16,7 +16,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            position: relative;
+            // position: relative;
 
             .userInfo {
                 display: flex;
@@ -67,7 +67,7 @@
             height: 0.5px;
         }
 
-        img {
+        .image {
             width: 100%;
             max-height: 500px;
             object-fit: cover;
@@ -83,9 +83,15 @@
         .item {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
             cursor: pointer;
             font-size: 14px;
+
+            img {
+                width: 25px;
+                height: 25px;
+            }
         }
     }
 }

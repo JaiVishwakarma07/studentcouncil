@@ -1,21 +1,24 @@
 import React from 'react'
 import './dircard.scss'
+import { useQuery } from "@tanstack/react-query";
+import newRequest from "../../utils/newRequest";
 
-const Dircard = () => {
+const Dircard = ({ user }) => {
+    // console.log(user)
     return (
         <div className="dircard">
-            <img src="https://m.timesofindia.com/photo/90103603/90103603.jpg" alt="" />
+            <img src={user.img} alt="" />
             <div className="info">
                 <div className="user">
-                    <span>username</span>
+                    <span>Name : {user.username}</span>
                 </div>
-                <p>desc</p>
+                <span>Roll No : {user.rollno}</span>
+                <span>Department : {user.dept}</span>
             </div>
             <hr />
             <div className="details">
-                <div className="price">
-                    <span>LinkedIN</span>
-                </div>
+                <span>Email : {user.email}</span>
+                <span>LinkedIN : {user.social}</span>
             </div>
         </div>
     )

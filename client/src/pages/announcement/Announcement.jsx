@@ -1,31 +1,59 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Announcement.scss'
 import { Link, useNavigate } from 'react-router-dom'
 import Card from '../../components/announcementcard/Card'
-
+import { useQuery } from "@tanstack/react-query";
+import newRequest from "../../utils/newRequest";
+import campus from "../../assets/office.png";
+import sports from "../../assets/sport.png";
+import hostel from "../../assets/hotel.png";
+import music from "../../assets/musical-note.png";
+import dance from "../../assets/dancing.png";
 
 const Announcement = () => {
-    const data = {
-        name: "Incident 2024 is Coming",
-        desc: "With great excitement, we bring you the opportunity to showcase your masterpieces of written works, be it a poem or an article, and share it with the NITK community in an album that will stay forever and cherish your work. Submit your writing works for the *Annual Shoreline Magazine* of our NITK. You can submit your written art and thoughtful opinions in *any of the 3 languages, English, Hindi, or Kannada* and upto 3 entries will be accepted from an individual. There's no restriction on the topic, but we encourage all the writers to be community friendly and spread positivity through their brilliant works! ",
-        img: "https://i.ytimg.com/vi/hWAY_HdnE88/maxresdefault.jpg"
-    }
+    const [cat, setCat] = useState("")
+    const { isLoading, error, data, refetch } = useQuery({
+        queryKey: ['announcement'],
+        queryFn: () => newRequest.get(`/announcements?category=${cat}`).then((res) => {
+            return res.data
+        })
+    })
+    useEffect(() => {
+        refetch();
+    }, [cat])
+    console.log(data)
+
     return (
         <div className='announcement'>
-            <div className="singleannouncement">
-                <Card data={data} />
-                <Card data={data} />
-                <Card data={data} />
-                <Card data={data} />
-                <Card data={data} />
-                <Card data={data} />
-            </div>
             <div className="Categories">
                 <h1>Categories</h1>
-                <Link className='link' to="/">Campus</Link>
-                <Link className='link' to="/">Hostels</Link>
-                <Link className='link' to="/">Clubs</Link>
-                <Link className='link' to="/">Sports</Link>
+                <div className="button">
+                    <img src={campus} alt="" />
+                    <button onClick={() => setCat("campus")}>Campus</button>
+                </div>
+                <div className="button">
+                    <img src={sports} alt="" />
+                    <button onClick={() => setCat("sports")}>Sports</button>
+                </div>
+                <div className="button">
+                    <img src={hostel} alt="" />
+                    <button onClick={() => setCat("hostel")}>Hostel</button>
+                </div>
+                <div className="button">
+                    <img src={music} alt="" />
+                    <button onClick={() => setCat("music")}>Music</button>
+                </div>
+                <div className="button">
+                    <img src={dance} alt="" />
+                    <button onClick={() => setCat("dance")}>Dance</button>
+                </div>
+            </div>
+            <div className="singleannouncement">
+                {isLoading ? "loading..." : error ? "error" :
+                    data.map((adata) => (
+                        <Card data={adata} key={adata._id} />
+                    ))
+                }
             </div>
         </div>
     )

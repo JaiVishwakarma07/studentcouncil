@@ -19,6 +19,7 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query'
 import Login from './pages/login/Login';
+import Register from './pages/register/Register';
 
 
 function App() {
@@ -88,10 +89,10 @@ function App() {
       path: "/login",
       element: <Login />
     },
-    // {
-    //   path: "/register",
-    //   element: <Register />,
-    // },
+    {
+      path: "/register",
+      element: <Register />,
+    },
   ]
   )
 

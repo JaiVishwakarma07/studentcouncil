@@ -5,7 +5,7 @@ import Logo from "../../assets/logo.jpg";
 
 const Navbar = () => {
     const { pathname } = useLocation()
-    console.log(pathname)
+
     return (
         <div className={pathname === "/" ? 'navbar active' : 'navbar'}>
             <div className='left'>

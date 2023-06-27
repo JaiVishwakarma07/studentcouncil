@@ -5,6 +5,8 @@ import cookieParser from "cookie-parser"
 import cors from "cors"
 import authRoute from "./routes/auth.route.js"
 import feedbackRoute from "./routes/feedback.route.js"
+import userRoute from "./routes/user.route.js"
+import announcementRoute from "./routes/announcement.route.js"
 
 
 const app = express()
@@ -30,6 +32,10 @@ app.use(express.json())
 app.use(cookieParser())
 app.use("/api/auth", authRoute)
 app.use("/api/feedback", feedbackRoute)
+app.use("/api/user", userRoute)
+app.use("/api/announcements", announcementRoute)
+
+
 
 app.listen(8800, () => {
     connect()
