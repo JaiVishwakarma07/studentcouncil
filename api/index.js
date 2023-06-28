@@ -7,7 +7,8 @@ import authRoute from "./routes/auth.route.js"
 import feedbackRoute from "./routes/feedback.route.js"
 import userRoute from "./routes/user.route.js"
 import announcementRoute from "./routes/announcement.route.js"
-
+import commentRoute from "./routes/comment.route.js"
+import electionRoute from "./routes/election.route.js"
 
 const app = express()
 dotenv.config()
@@ -34,6 +35,8 @@ app.use("/api/auth", authRoute)
 app.use("/api/feedback", feedbackRoute)
 app.use("/api/user", userRoute)
 app.use("/api/announcements", announcementRoute)
+app.use("/api/comment", commentRoute)
+app.use("/api/election", electionRoute)
 
 
 

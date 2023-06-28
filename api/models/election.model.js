@@ -3,24 +3,7 @@ import mongoose from 'mongoose'
 const { Schema } = mongoose;
 
 const ElectionSchema = new Schema({
-    candidate: {
-        type: String,
-        required: true,
-    },
-    rollno: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    dept: {
-        type: String,
-        required: true,
-    },
-    course: {
-        type: String,
-        required: true,
-    },
-    about: {
+    id: {
         type: String,
         required: true,
     },
@@ -32,4 +15,4 @@ const ElectionSchema = new Schema({
 
 }, { timestamps: true })
 
-export default mongoose.model(("Election", ElectionSchema))
+export default mongoose.model("Election", ElectionSchema)

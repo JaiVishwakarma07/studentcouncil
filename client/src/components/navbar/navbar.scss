@@ -47,6 +47,22 @@
             display: flex;
             gap: 20px;
 
+            button {
+                color: #fff;
+                padding: 5px 7px;
+                border-radius: 3px;
+                border: 1px solid #111;
+                cursor: pointer;
+                background-color: transparent;
+                color: #111;
+
+                &:hover {
+                    background-color: #1dbf73;
+                    border-color: #1dbf73;
+                    color: white;
+                }
+            }
+
             .link {
                 text-decoration: none;
                 color: inherit;

@@ -20,11 +20,12 @@ import {
 } from '@tanstack/react-query'
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
+import AddAnnounce from './pages/addannounce/AddAnnounce';
 
 
 function App() {
 
-  const currentUser = true;
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const queryClient = new QueryClient()
 
   const Layout = () => {
@@ -81,6 +82,10 @@ function App() {
         {
           path: "/singleannouncement/:id",
           element: <SingleAnnouncement />
+        },
+        {
+          path: "/addanouncement",
+          element: <AddAnnounce />
         },
       ]
     },

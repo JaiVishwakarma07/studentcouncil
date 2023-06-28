@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './Announcement.scss'
 import { Link, useNavigate } from 'react-router-dom'
 import Card from '../../components/announcementcard/Card'
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 import campus from "../../assets/office.png";
 import sports from "../../assets/sport.png";
@@ -12,6 +12,7 @@ import dance from "../../assets/dancing.png";
 
 const Announcement = () => {
     const [cat, setCat] = useState("")
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     const { isLoading, error, data, refetch } = useQuery({
         queryKey: ['announcement'],
         queryFn: () => newRequest.get(`/announcements?category=${cat}`).then((res) => {
@@ -21,10 +22,28 @@ const Announcement = () => {
     useEffect(() => {
         refetch();
     }, [cat])
-    console.log(data)
+    // console.log(data)
+    // const queryClient = useQueryClient();
+
+    // const mutation = useMutation(
+    //     (newAnnouncement) => {
+    //         return newRequest.post("/announcement", newAnnouncement);
+    //     },
+    //     {
+    //         onSuccess: () => {
+    //             queryClient.invalidateQueries(["announcement"]);
+    //         },
+    //     }
+    // );
+
+    // const handleClick = async (e) => {
+    //     e.preventDefault()
+
+    // }
 
     return (
         <div className='announcement'>
+
             <div className="Categories">
                 <h1>Categories</h1>
                 <div className="button">
@@ -47,6 +66,10 @@ const Announcement = () => {
                     <img src={dance} alt="" />
                     <button onClick={() => setCat("dance")}>Dance</button>
                 </div>
+                <hr />
+                {currentUser.isAdmin ? <div className="addbutton">
+                    <Link className='button' to="/addanouncement">+ Add Announcement</Link>
+                </div> : <div></div>}
             </div>
             <div className="singleannouncement">
                 {isLoading ? "loading..." : error ? "error" :

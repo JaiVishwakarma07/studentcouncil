@@ -22,6 +22,19 @@
         padding: 20px;
         border-radius: 5px;
 
+        .addbutton {
+            .button {
+                background-color: #19AC8E;
+                border: none;
+                color: #fff;
+                height: 30px;
+                cursor: pointer;
+                width: max-content;
+                padding: 5px 10px;
+                text-decoration: none;
+            }
+        }
+
         .button {
             display: flex;
 

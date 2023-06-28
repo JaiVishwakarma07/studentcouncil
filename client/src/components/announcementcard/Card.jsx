@@ -33,7 +33,7 @@ const Card = ({ data }) => {
                         <span>Share</span>
                     </div>
                 </div>
-                {commentOpen && <AComment />}
+                {commentOpen && <AComment Aid={data._id} />}
             </div>
         </div>
     )

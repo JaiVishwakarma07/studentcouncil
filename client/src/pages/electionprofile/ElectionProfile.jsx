@@ -6,12 +6,13 @@ const ElectionProfile = ({ setOpenProfile, data }) => {
         <div className="electionprofile">
             <div className="wrapper">
                 <img src={data.img} alt="" />
-                <h1>{data.name}</h1>
+                <h1>{data.username}</h1>
                 <div className="info">
                     <span>ROLLNO : {data.rollno}</span>
                     <span>DEPARTMENT : {data.dept}</span>
-                    <span>COURSE : {data.course}</span>
-                    <p>About : {data.desc}</p>
+                    <span>COURSE : {data.dept}</span>
+                    <span>Email : {data.email}</span>
+
                 </div>
                 <button className="close" onClick={() => setOpenProfile(false)}>
                     close
