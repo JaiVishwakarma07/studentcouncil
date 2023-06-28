@@ -20,7 +20,7 @@ const Election = () => {
                 <div className="cards">
                     {isLoading ? "loading..." :
                         data.map((candidate, i) => (
-                            <ElectionCard id={candidate.id} key={i} />
+                            <ElectionCard id={candidate.id} voteid={candidate._id} totalvotes={candidate.votes} key={i} />
                         ))
                     }
                 </div>

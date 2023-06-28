@@ -1,7 +1,6 @@
 import Election from "../models/election.model.js";
 
 export const addCandidate = async (req, res) => {
-    // const newComment = new Comments({ id: req.userId, ...req.body, })
     const newCandidate = new Election(req.body)
     try {
         await newCandidate.save()
@@ -14,4 +13,14 @@ export const addCandidate = async (req, res) => {
 export const getCandidates = async (req, res) => {
     const candidate = await Election.find();
     res.status(200).send(candidate)
+}
+export const deleteCandidates = async (req, res) => {
+    try {
+        const id = req.body.id
+        // console.log(id)
+        await Election.findByIdAndDelete(id);
+        res.status(200).send("candidate deleted");
+    } catch (error) {
+        return res.status(500).json(error)
+    }
 }

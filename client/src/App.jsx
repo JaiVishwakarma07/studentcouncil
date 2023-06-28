@@ -21,6 +21,7 @@ import {
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 import AddAnnounce from './pages/addannounce/AddAnnounce';
+import ShowFeedbacks from './pages/showfeedbacks/ShowFeedbacks';
 
 
 function App() {
@@ -74,6 +75,10 @@ function App() {
         {
           path: "/feedback",
           element: <Feedback />
+        },
+        {
+          path: "/showfeedbacks",
+          element: <ShowFeedbacks />
         },
         {
           path: "/announcement",

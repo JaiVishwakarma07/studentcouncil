@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './electioncard.scss'
 import ElectionProfile from '../../pages/electionprofile/ElectionProfile'
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 
-const ElectionCard = ({ id }) => {
+const ElectionCard = ({ id, voteid, totalvotes }) => {
+    const [vote, setVote] = useState(0);
+    const [voted, setVoted] = useState(false)
     const [openProfle, setOpenProfile] = useState(false)
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
@@ -14,7 +16,30 @@ const ElectionCard = ({ id }) => {
             return res.data
         })
     })
-    const vote = false;
+
+
+
+    useEffect(() => {
+        setVote(vote)
+    }, [vote])
+
+    // const queryClient = useQueryClient();
+    // const mutation = useMutation({
+    //     mutationFn: (v) => {
+    //         if (v) return newRequest.delete("/election", voteid);
+    //         return newRequest.post(`/election`, v)
+    //     },
+    //     onSuccess: () => {
+    //         queryClient.invalidateQueries(["election"])
+    //     }
+    // })
+
+
+    const handleVote = (e) => {
+        e.preventDefault()
+        setVoted(true)
+        setVote(vote + 1)
+    }
     return (
         <div className="electioncard">
             {isLoading ? "loading..." : <img src={data.img} alt="" />}
@@ -24,10 +49,11 @@ const ElectionCard = ({ id }) => {
                 </div>
                 <p>RollNO : {data.rollno}</p>
                 <span>Social link : {data.social}</span>
+                <span>Total Votes : {vote}</span>
             </div>}
             <hr />
             <div className="details">
-                {!vote && !currentUser.isAdmin && <button onClick={() => { }}>Vote</button>}
+                {!voted && !currentUser.isAdmin && <button onClick={handleVote}>Vote</button>}
                 <button onClick={() => setOpenProfile(true)}>Profile</button>
             </div>
             {openProfle && <ElectionProfile setOpenProfile={setOpenProfile} data={data} />}

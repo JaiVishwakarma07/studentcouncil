@@ -3,9 +3,12 @@ import './feedback.scss'
 import axios from 'axios'
 import newRequest from '../../utils/newRequest'
 import { useNavigate } from 'react-router'
+import { Link } from 'react-router-dom'
 
 
 const Feedback = () => {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
     const [feedback, setFeedback] = useState({
         username: "",
         rollno: "",
@@ -45,6 +48,9 @@ const Feedback = () => {
                 </select>
                 <textarea name="desc" id="" cols="30" rows="10" onChange={handleChange} placeholder='Write your feedback here'></textarea>
                 <button onClick={handleSubmit}>Submit</button>
+                {currentUser.isAdmin && <div>
+                    <Link to="/showfeedbacks" style={{ textDecoration: "none", color: "inherit", border: "1px solid black", padding: "5px" }}>Show Feedbacks</Link>
+                </div>}
             </form>
         </div>
     )
